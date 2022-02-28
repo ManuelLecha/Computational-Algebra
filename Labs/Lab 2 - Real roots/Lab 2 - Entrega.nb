@@ -1,0 +1,1371 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     50717,       1363]
+NotebookOptionsPosition[     48013,       1308]
+NotebookOutlinePosition[     48413,       1324]
+CellTagsIndexPosition[     48370,       1321]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Lab 2 - Real Roots", "Title",
+ CellChangeTimes->{{3.8550273780504923`*^9, 
+  3.855027394175248*^9}},ExpressionUUID->"e32d3fbc-34f8-4c98-988f-\
+ad75c20d2207"],
+
+Cell["Thursday 10/03", "Subsubtitle",
+ CellChangeTimes->{{3.855027438653167*^9, 
+  3.855027447146058*^9}},ExpressionUUID->"e21a38c8-0626-4a15-8058-\
+1ea82d3f2774"],
+
+Cell[CellGroupData[{
+
+Cell["Exercise 1", "Section",
+ CellChangeTimes->{{3.85502747001057*^9, 
+  3.855027483029833*^9}},ExpressionUUID->"f47cc5e1-2276-43a3-8509-\
+b307968cc66f"],
+
+Cell[CellGroupData[{
+
+Cell["Descartes Rule of Signs", "Subsection",
+ CellChangeTimes->{{3.8550274872688313`*^9, 3.855027492307322*^9}, {
+  3.8550537931074667`*^9, 
+  3.855053806898604*^9}},ExpressionUUID->"653ad6ef-4acb-46dc-957f-\
+14695f01fa83"],
+
+Cell[TextData[{
+ "In this first part we are asked to prove the Descartes Rule of Signs. So we \
+are going to proceed as follows: \n",
+ StyleBox["\nLemma 1: ",
+  FontWeight->"Bold"],
+ "A root of ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "593d90f2-0a4f-4309-b4a1-0357f3c1d032"],
+ " is also a root of ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SuperscriptBox[
+          StyleBox["p", "TI"], "\[Prime]"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p'(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "d45c3c59-b719-46b9-ac64-3a5726ee3cc8"],
+ " with multiplicity one less.\n",
+ StyleBox["Proof. ",
+  FontWeight->"Bold"],
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], 
+         RowBox[{"(", 
+           StyleBox["x", "TI"], ")"}], "\[LongEqual]", 
+         SuperscriptBox[
+          RowBox[{"(", 
+            RowBox[{
+              StyleBox["x", "TI"], "-", 
+              StyleBox["a", "TI"]}], ")"}], 
+          StyleBox["k", "TI"]], 
+         StyleBox["q", "TI"], 
+         RowBox[{"(", 
+           StyleBox["x", "TI"], ")"}]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x) = (x-a)^kq(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "1e2082f7-f93b-4a65-a587-53654405dcef"],
+ " with (x-a) not dividing q(x). Then, ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       StyleBox["k", "TI"], TraditionalForm], "errors" -> {}, "input" -> "k", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "eab69544-caad-478a-84c7-a27bd954bd79"],
+ " is the multiplicity of ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       StyleBox["a", "TI"], TraditionalForm], "errors" -> {}, "input" -> "a", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "3b1adf5a-2b5a-485d-a58b-1e39cbb8a137"],
+ " as a root of ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "c36509e4-c5b4-4a8b-b98b-a23800e85ce0"],
+ ". Hence, ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SuperscriptBox[
+          StyleBox["p", "TI"], "\[Prime]"], 
+         RowBox[{"(", 
+           StyleBox["x", "TI"], ")"}], "\[LongEqual]", 
+         StyleBox["k", "TI"], 
+         SuperscriptBox[
+          RowBox[{"(", 
+            RowBox[{
+              StyleBox["x", "TI"], "-", 
+              StyleBox["a", "TI"]}], ")"}], 
+          RowBox[{
+            StyleBox["k", "TI"], "-", "1"}]], 
+         StyleBox["q", "TI"], 
+         RowBox[{"(", 
+           StyleBox["x", "TI"], ")"}], "+", 
+         SuperscriptBox[
+          RowBox[{"(", 
+            RowBox[{
+              StyleBox["x", "TI"], "-", 
+              StyleBox["a", "TI"]}], ")"}], 
+          StyleBox["k", "TI"]], 
+         SuperscriptBox[
+          StyleBox["q", "TI"], "\[Prime]"], 
+         RowBox[{"(", 
+           StyleBox["x", "TI"], ")"}], "\[LongEqual]", 
+         SuperscriptBox[
+          RowBox[{"(", 
+            RowBox[{
+              StyleBox["x", "TI"], "-", 
+              StyleBox["a", "TI"]}], ")"}], 
+          RowBox[{
+            StyleBox["k", "TI"], "-", "1"}]], 
+         RowBox[{"[", 
+           RowBox[{
+             StyleBox["k", "TI"], 
+             StyleBox["q", "TI"], 
+             RowBox[{"(", 
+               StyleBox["x", "TI"], ")"}], "+", 
+             RowBox[{"(", 
+               RowBox[{
+                 StyleBox["x", "TI"], "-", 
+                 StyleBox["a", "TI"]}], ")"}], 
+             SuperscriptBox[
+              StyleBox["q", "TI"], "\[Prime]"], 
+             RowBox[{"(", 
+               StyleBox["x", "TI"], ")"}]}], "]"}], "\[LongEqual]", 
+         SuperscriptBox[
+          RowBox[{"(", 
+            RowBox[{
+              StyleBox["x", "TI"], "-", 
+              StyleBox["a", "TI"]}], ")"}], 
+          RowBox[{
+            StyleBox["k", "TI"], "-", "1"}]], 
+         StyleBox["F", "TI"], 
+         RowBox[{"(", 
+           StyleBox["x", "TI"], ")"}]}], TraditionalForm], "errors" -> {}, 
+     "input" -> 
+     "p'(x) = k(x-a)^{k-1}q(x) + (x-a)^kq'(x) = (x-a)^{k-1}[kq(x) + \
+(x-a)q'(x)] = (x-a)^{k-1}F(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "36b77d4e-058d-4ae4-80db-50a6233f7ec3"],
+ ", where ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{"(", 
+         RowBox[{
+           StyleBox["x", "TI"], "-", 
+           StyleBox["a", "TI"]}], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "(x-a) ", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "e74f351c-a6b4-42b0-9cdd-19958fa34195"],
+ " does not divide ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["F", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "F(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "fd77c420-56a5-494a-8660-0ea6c2811787"],
+ ", since  ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["F", "TI"], 
+         RowBox[{"(", 
+           StyleBox["a", "TI"], ")"}], "\[LongEqual]", 
+         StyleBox["k", "TI"], 
+         StyleBox["q", "TI"], 
+         RowBox[{"(", 
+           StyleBox["a", "TI"], ")"}], "\[NotEqual]", "0"}], TraditionalForm],
+      "errors" -> {}, "input" -> "F(a) = kq(a) \\neq 0", "state" -> "Boxes"|>,
+    
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "e2913c8f-5bd5-41ab-b525-c2414bd66eed"],
+ ". Therefore, ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["k", "TI"], "-", "1"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "k-1", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "c7116f1a-443d-4141-8783-c192c6873699"],
+ " is the multiplicity of ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       StyleBox["a", "TI"], TraditionalForm], "errors" -> {}, "input" -> "a", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "149adcaf-9a79-44b2-9f82-b6a12a86c7ea"],
+ " as a root of ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SuperscriptBox[
+          StyleBox["p", "TI"], "\[Prime]"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p'(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "9a44805a-f0ef-4e5c-90e7-11b12f34852e"],
+ ".",
+ "\n\n",
+ StyleBox["Lemma 2: ",
+  FontWeight->"Bold"],
+ "If all roots of a polynomial ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "8e8372e2-e0f5-4e46-aa51-f9d18649debc"],
+ "are real numbers, then also the roots of ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SuperscriptBox[
+          StyleBox["p", "TI"], "\[Prime]"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p'(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "332677ca-dd08-4e2c-84da-83c1ae835aaf"],
+ " are real numbers. Moreover, between two consecutive roots of ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "c71627cb-651b-4d99-b65b-20fb7a189f50"],
+ " there is a simple (multiplicity ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|
+    "boxes" -> FormBox["1", TraditionalForm], "errors" -> {}, "input" -> "1", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "120be4e5-1dc9-426c-a3f6-6386d95677f5"],
+ ") root of ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SuperscriptBox[
+          StyleBox["p", "TI"], "\[Prime]"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p'(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "d214c129-9f17-4942-a0d1-15fde9f0d366"],
+ ".\n",
+ StyleBox["Proof. ",
+  FontWeight->"Bold"],
+ "Let ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SubscriptBox[
+          StyleBox["x", "TI"], "1"], "<", 
+         SubscriptBox[
+          StyleBox["x", "TI"], "2"], "<", "\[Ellipsis]", "<", 
+         SubscriptBox[
+          StyleBox["x", "TI"], 
+          StyleBox["k", "TI"]]}], TraditionalForm], "errors" -> {}, "input" -> 
+     "x_1 < x_2 < \\dots < x_k", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "4d324f80-8ac9-4f4c-8cb2-b6a1906a81c3"],
+ " be the roots of ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "b27b3e2c-e6cc-4f14-b355-8584971a657d"],
+ " with multiplicity ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SubscriptBox[
+          StyleBox["m", "TI"], "1"], ",", 
+         SubscriptBox[
+          StyleBox["m", "TI"], "2"], ",", "\[Ellipsis]", ",", 
+         SubscriptBox[
+          StyleBox["m", "TI"], 
+          StyleBox["k", "TI"]]}], TraditionalForm], "errors" -> {}, "input" -> 
+     "m_1, m_2, \\dots, m_k", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "768bfdf7-02fe-464e-a5ee-458deb5f3f8a"],
+ " respectively. Therefore, we have that ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         UnderoverscriptBox["\[Sum]", 
+          RowBox[{
+            StyleBox["i", "TI"], "\[LongEqual]", "1"}], 
+          StyleBox["k", "TI"], LimitsPositioning -> True], 
+         SubscriptBox[
+          StyleBox["m", "TI"], 
+          StyleBox["i", "TI"]], "\[LongEqual]", 
+         StyleBox["n", "TI"], "\[LongEqual]", "deg", 
+         RowBox[{"(", 
+           RowBox[{
+             StyleBox["p", "TI"], "(", 
+             StyleBox["x", "TI"], ")"}], ")"}]}], TraditionalForm], 
+     "errors" -> {}, "input" -> "\\sum_{i=1}^k m_i = n = \\deg(p(x))", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "91319d15-6958-4d80-99de-e8b8df456e66"],
+ ". From Lemma 1, ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SuperscriptBox[
+          StyleBox["p", "TI"], "\[Prime]"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p'(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "0f8050e7-94af-407b-b686-491aafd196d5"],
+ " has each of the roots of ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "bb09da13-9130-4a9b-a4c2-e7446c545940"],
+ " but with multiplicity one less. From Rolle\[CloseCurlyQuote]s Theorem, we \
+know that between any two real roots of ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "4cf98437-5290-4974-9994-c179d1bed1b8"],
+ " we have at least one real root of ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SuperscriptBox[
+          StyleBox["p", "TI"], "\[Prime]"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p'(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "02e47499-5990-4408-85e4-4a5f7f688548"],
+ ". Thus, we are going to have at least ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["k", "TI"], "-", "1"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "k-1 ", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "d336ffa2-bd58-40f1-bfa5-f35f81853201"],
+ " distinct real roots.  ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         UnderoverscriptBox["\[Sum]", 
+          RowBox[{
+            StyleBox["i", "TI"], "\[LongEqual]", "1"}], 
+          StyleBox["k", "TI"], LimitsPositioning -> True], 
+         RowBox[{"(", 
+           RowBox[{
+             SubscriptBox[
+              StyleBox["m", "TI"], 
+              StyleBox["i", "TI"]], "-", "1"}], ")"}], "+", 
+         StyleBox["k", "TI"], "-", "1", "\[LongEqual]", 
+         StyleBox["n", "TI"], "-", "1", "\[LongEqual]", "deg", 
+         RowBox[{"(", 
+           RowBox[{
+             SuperscriptBox[
+              StyleBox["p", "TI"], "\[Prime]"], "(", 
+             StyleBox["x", "TI"], ")"}], ")"}]}], TraditionalForm], 
+     "errors" -> {}, "input" -> 
+     "\\sum_{i=1}^k (m_i  -1) + k - 1  = n - 1 = \\deg(p'(x))", "state" -> 
+     "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "0b26770e-71df-44a8-bd39-9bcc16f627cb"],
+ ". Hence, ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SuperscriptBox[
+          StyleBox["p", "TI"], "\[Prime]"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p'(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "ecae9b6a-2d8b-4893-8ccc-67b287515157"],
+ " has no other than the latter roots.",
+ "\n\n",
+ StyleBox["Observation 1: ",
+  FontWeight->"Bold"],
+ "If all roots of a polynomial ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x) ", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "d9c88faa-bf72-4e08-a1b5-1b085dd80f80"],
+ " ",
+ "are real numbers and ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       StyleBox["k", "TI"], TraditionalForm], "errors" -> {}, "input" -> "k ",
+      "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "ef0bb081-24b9-40ea-a824-8a66c3cefc42"],
+ " ",
+ "of them are positive, then ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SuperscriptBox[
+          StyleBox["p", "TI"], "\[Prime]"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p'(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "c65a0ac6-dfd8-4de2-a373-144f11dbf3f9"],
+ " has either ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       StyleBox["k", "TI"], TraditionalForm], "errors" -> {}, "input" -> "k", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "bef3cd05-21f4-43e2-80ab-ffdfba59130d"],
+ " or ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["k", "TI"], "-", "1"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "k-1", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "d0b974fb-fed3-46e4-bef0-5c57d79fa3f8"],
+ " ",
+ "positive roots. The latter depends on wether there is a simple positive \
+root of ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SuperscriptBox[
+          StyleBox["p", "TI"], "\[Prime]"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p'(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "6457b719-403f-462e-a48a-4128896b7034"],
+ " between the maximum negative root of ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "b5779b1d-e828-4eec-bb47-f1d438373d90"],
+ " and the minimum positive root ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "d057fa90-c93f-4162-9edf-830c262ef2ce"],
+ ".\n\n",
+ StyleBox["Lemma 3: ",
+  FontWeight->"Bold"],
+ "If  ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "b57255eb-11c0-4d17-9a2d-0cea23c9839b"],
+ " has k positive roots, then the sign of the last non zero coefficients of \
+",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "977a4ffa-f5c4-4d8a-bcc3-edf50495b70a"],
+ " is ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       SuperscriptBox[
+        RowBox[{"(", "-1", ")"}], 
+        StyleBox["k", "TI"]], TraditionalForm], "errors" -> {}, "input" -> 
+     "(-1)^k", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "dc93d4d6-04d9-4034-8d28-2b40c0a7e563"],
+ ".\n",
+ StyleBox["Proof. ",
+  FontWeight->"Bold"],
+ "Let ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       SubscriptBox[
+        StyleBox["a", "TI"], 
+        StyleBox["l", "TI"]], TraditionalForm], "errors" -> {}, "input" -> 
+     "a_l", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "624a3c5e-2a7a-4642-a588-b138e570a076"],
+ " be the last non zero coefficient. Therefore, since all roots of ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "48eed290-0448-46cd-bbb5-5deadd491689"],
+ " are real numbers ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], 
+         RowBox[{"(", 
+           StyleBox["x", "TI"], ")"}], "\[LongEqual]", 
+         SubscriptBox[
+          StyleBox["a", "TI"], 
+          StyleBox["n", "TI"]], 
+         SuperscriptBox[
+          StyleBox["x", "TI"], 
+          StyleBox["n", "TI"]], "+", "\[Ellipsis]", "+", 
+         SubscriptBox[
+          StyleBox["a", "TI"], 
+          StyleBox["l", "TI"]], 
+         SuperscriptBox[
+          StyleBox["x", "TI"], 
+          StyleBox["l", "TI"]], "\[LongEqual]", 
+         SubscriptBox[
+          StyleBox["a", "TI"], 
+          StyleBox["n", "TI"]], 
+         SuperscriptBox[
+          StyleBox["x", "TI"], 
+          StyleBox["l", "TI"]], 
+         RowBox[{"(", 
+           RowBox[{
+             StyleBox["x", "TI"], "-", 
+             SubscriptBox[
+              StyleBox["x", "TI"], "1"]}], ")"}], "\[Ellipsis]", 
+         RowBox[{"(", 
+           RowBox[{
+             StyleBox["x", "TI"], "-", 
+             SubscriptBox[
+              StyleBox["x", "TI"], 
+              StyleBox["k", "TI"]]}], ")"}], 
+         RowBox[{"(", 
+           RowBox[{
+             StyleBox["x", "TI"], "-", 
+             SubscriptBox[
+              StyleBox["x", "TI"], 
+              RowBox[{
+                StyleBox["k", "TI"], "+", "1"}]]}], ")"}], "\[Ellipsis]", 
+         RowBox[{"(", 
+           RowBox[{
+             StyleBox["x", "TI"], "-", 
+             SubscriptBox[
+              StyleBox["x", "TI"], 
+              RowBox[{
+                StyleBox["n", "TI"], "-", 
+                StyleBox["l", "TI"]}]]}], ")"}]}], TraditionalForm], 
+     "errors" -> {}, "input" -> 
+     "p(x) = a_nx^n + \\dots + a_lx^l = a_nx^l(x -x_ 1)\\dots \
+(x-x_k)(x-x_{k+1})\\dots(x - x_{n-l})", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "c5012234-e3e2-49f1-b926-62f5ed552f94"],
+ " where ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SubscriptBox[
+          StyleBox["x", "TI"], "1"], ",", "\[Ellipsis]", ",", 
+         SubscriptBox[
+          StyleBox["x", "TI"], 
+          StyleBox["k", "TI"]]}], TraditionalForm], "errors" -> {}, "input" -> 
+     "x_1, \\dots, x_k", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "57f6ebdf-2872-472a-bc21-01cc8c1e5316"],
+ " are the positive roots and ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SubscriptBox[
+          StyleBox["x", "TI"], 
+          RowBox[{
+            StyleBox["k", "TI"], "+", "1"}]], ",", "\[Ellipsis]", ",", 
+         SubscriptBox[
+          StyleBox["x", "TI"], 
+          RowBox[{
+            StyleBox["n", "TI"], "-", 
+            StyleBox["l", "TI"]}]]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "x_{k+1}, \\dots, x_{n-l}", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "6e6e1028-db66-48f6-9c46-336f18bbb272"],
+ " are the negative ones. Thus, by the latter equation, we can get that ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SubscriptBox[
+          StyleBox["a", "TI"], 
+          StyleBox["n", "TI"]], 
+         SuperscriptBox[
+          StyleBox["x", "TI"], 
+          RowBox[{
+            StyleBox["n", "TI"], "-", 
+            StyleBox["l", "TI"]}]], "+", "\[Ellipsis]", "+", 
+         SubscriptBox[
+          StyleBox["a", "TI"], 
+          StyleBox["l", "TI"]], "\[LongEqual]", 
+         SubscriptBox[
+          StyleBox["a", "TI"], 
+          StyleBox["n", "TI"]], 
+         RowBox[{"(", 
+           RowBox[{
+             StyleBox["x", "TI"], "-", 
+             SubscriptBox[
+              StyleBox["x", "TI"], "1"]}], ")"}], "\[Ellipsis]", 
+         RowBox[{"(", 
+           RowBox[{
+             StyleBox["x", "TI"], "-", 
+             SubscriptBox[
+              StyleBox["x", "TI"], 
+              StyleBox["k", "TI"]]}], ")"}], 
+         RowBox[{"(", 
+           RowBox[{
+             StyleBox["x", "TI"], "-", 
+             SubscriptBox[
+              StyleBox["x", "TI"], 
+              RowBox[{
+                StyleBox["k", "TI"], "+", "1"}]]}], ")"}], "\[Ellipsis]", 
+         RowBox[{"(", 
+           RowBox[{
+             StyleBox["x", "TI"], "-", 
+             SubscriptBox[
+              StyleBox["x", "TI"], 
+              RowBox[{
+                StyleBox["n", "TI"], "-", 
+                StyleBox["l", "TI"]}]]}], ")"}]}], TraditionalForm], 
+     "errors" -> {}, "input" -> 
+     "a_nx^{n-l} + \\dots + a_l = a_n(x -x_ 1)\\dots \
+(x-x_k)(x-x_{k+1})\\dots(x - x_{n-l})", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "4301facf-a468-4ec8-ac3c-a7edc6e482ca"],
+ ". Hence, by evaluating the expression in 0, we get that ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SubscriptBox[
+          StyleBox["a", "TI"], 
+          StyleBox["l", "TI"]], "\[LongEqual]", 
+         SubscriptBox[
+          StyleBox["a", "TI"], 
+          StyleBox["n", "TI"]], 
+         SuperscriptBox[
+          RowBox[{"(", "-1", ")"}], 
+          StyleBox["k", "TI"]], 
+         RowBox[{"(", 
+           RowBox[{
+             SubscriptBox[
+              StyleBox["x", "TI"], "1"], "\[Ellipsis]", 
+             SubscriptBox[
+              StyleBox["x", "TI"], 
+              StyleBox["k", "TI"]]}], ")"}], 
+         RowBox[{"(", 
+           RowBox[{"-", 
+             SubscriptBox[
+              StyleBox["x", "TI"], 
+              RowBox[{
+                StyleBox["k", "TI"], "+", "1"}]], "\[Ellipsis]", "-", 
+             SubscriptBox[
+              StyleBox["x", "TI"], 
+              RowBox[{
+                StyleBox["n", "TI"], "-", 
+                StyleBox["l", "TI"]}]]}], ")"}]}], TraditionalForm], 
+     "errors" -> {}, "input" -> 
+     "a_l = a_n(-1)^k(x_1 \\dots x_k)(-x_{k+1} \\dots -x_{n-l})", "state" -> 
+     "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "d27bfa56-39af-4f2a-bfb9-9bbd89b633a6"],
+ " as we wanted to proof.",
+ "\n\n",
+ StyleBox["Theorem (Descartes Rule of Signs): ",
+  FontWeight->"Bold"],
+ "Given a polynomial with real coefficients on one variable with all the \
+roots being real, the number of positive roots counted with their \
+corresponding multiplicity corresponds to the number of variation of signs \
+among the ordered sequence of his coefficients.\n\n",
+ StyleBox["Proof.  ",
+  FontWeight->"Bold"],
+ "(We proceed by induction on the degree of p(x))\n- Base case: For ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["n", "TI"], "\[LongEqual]", "1"}], TraditionalForm], 
+     "errors" -> {}, "input" -> "n=1", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "d4baa911-c87e-4933-a865-eaf9cf19dc01"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], 
+         RowBox[{"(", 
+           StyleBox["x", "TI"], ")"}], "\[LongEqual]", 
+         SubscriptBox[
+          StyleBox["a", "TI"], "1"], 
+         StyleBox["x", "TI"], "+", 
+         SubscriptBox[
+          StyleBox["a", "TI"], "0"]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x) = a_ 1x + a_ 0", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "afae5d89-040e-44ab-9df1-e9195002abe2"],
+ " has a unique root ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{"-", "(", 
+         FractionBox[
+          SubscriptBox[
+           StyleBox["a", "TI"], "0"], 
+          SubscriptBox[
+           StyleBox["a", "TI"], "1"]], ")"}], TraditionalForm], 
+     "errors" -> {}, "input" -> "-(\\frac{a_0}{a_1})", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "c9db12db-40bf-4853-9609-1e5746eea168"],
+ ", so it is satisfied.\n- General case: We suppose it is satisfied for all \
+polynomial of degree n-1. Suppose we are given ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], 
+         RowBox[{"(", 
+           StyleBox["x", "TI"], ")"}], "\[LongEqual]", 
+         SubscriptBox[
+          StyleBox["a", "TI"], 
+          StyleBox["n", "TI"]], 
+         SubscriptBox[
+          StyleBox["x", "TI"], 
+          StyleBox["n", "TI"]], "+", "\[Ellipsis]", "+", 
+         SubscriptBox[
+          StyleBox["a", "TI"], "0"]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x) = a_nx_n + \\dots + a_0 ", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "8f871c5b-a866-462c-b182-e0f168aa9210"],
+ "satisfying the hypothesis. \n\n \t\[CenterDot] If ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SubscriptBox[
+          StyleBox["a", "TI"], "0"], "\[LongEqual]", "0"}], TraditionalForm], 
+     "errors" -> {}, "input" -> "a_0 = 0", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "dad784b4-29d2-42c7-a8df-c42ba180c581"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], 
+         RowBox[{"(", 
+           StyleBox["x", "TI"], ")"}], "\[LongEqual]", 
+         StyleBox["x", "TI"], 
+         StyleBox["q", "TI"], 
+         RowBox[{"(", 
+           StyleBox["x", "TI"], ")"}]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x) = xq(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "cc9377cf-18bf-404e-890f-8473f4ca41be"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "f312eb74-b3f9-460e-9312-cc362b52409a"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["q", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "q(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "1dffb62e-6c70-44f1-8474-de8d25bbe2c3"],
+ " have the same number of variation of signs and positive roots. Since ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["q", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "q(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "147777e9-20e9-4a66-a56e-e9a20efa12e7"],
+ " has degree ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["n", "TI"], "-", "1"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "n-1", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "27ad23ab-8a10-4f58-9345-cc8c9d7a76f7"],
+ " it holds everything holds.\n \t\n \t\[CenterDot] If ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SubscriptBox[
+          StyleBox["a", "TI"], "0"], "\[NotEqual]", "0"}], TraditionalForm], 
+     "errors" -> {}, "input" -> "a_0 \\neq 0", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "7c41c2ed-3d58-42df-8704-67f892dd269f"],
+ ", then we can take ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SuperscriptBox[
+          StyleBox["p", "TI"], "\[Prime]"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p'(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "189486d4-a3b1-4c99-a296-1af42175bb69"],
+ " which has degree ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["n", "TI"], "-", "1"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "n-1", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "98cac717-6466-4b7a-ac66-a272cc45375f"],
+ ". The last non zero coefficient in ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SuperscriptBox[
+          StyleBox["p", "TI"], "\[Prime]"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p'(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "49a2661b-a70a-4896-a2cb-d01518d606d4"],
+ " is the consecutive non zero to the one in ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "031178a1-3c5c-4dae-bd46-53d946cfc911"],
+ ". Hence, if both signs coincide, we have the same variations of signs i\tn \
+both (different otherwise) and so by Lemma 3, the parity of the number of \
+positive roots is the same (distinct otherwise). Moreover, by Observation 2, \
+either ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "ea2ab693-1f31-4825-b66b-56f49aff77e6"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SuperscriptBox[
+          StyleBox["p", "TI"], "\[Prime]"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p'(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "0fe9b9fe-4b5c-4cf2-8e18-0ec2fbc62a44"],
+ " have the same number of roots, \t\tor ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SuperscriptBox[
+          StyleBox["p", "TI"], "\[Prime]"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p'(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "8190f521-7f78-4ca8-b02e-305d14c4e56e"],
+ " has one less. By induction hypothesis ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         SuperscriptBox[
+          StyleBox["p", "TI"], "\[Prime]"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p'(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "a2f47f55-de3c-4d38-9314-e8833a42a22a"],
+ " has the same number of roots than changes of sign, so since ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "4e65868b-8d6d-4b20-acfc-3a1e6ecc5f81"],
+ " differs from the number of positive roots from ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "5d67ff0b-b240-4584-bb75-11dee6bec54c"],
+ " depending if the number of variations \tof sign varies, it follows for ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["p", "TI"], "(", 
+         StyleBox["x", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "p(x) ", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "e430ba33-4003-4df8-b757-93440ae32a54"],
+ " too ",
+ "as we wanted to prove.\n\n"
+}], "Text",
+ CellChangeTimes->{{3.85504695681949*^9, 3.855047078261877*^9}, {
+   3.855047151886208*^9, 3.855047465092169*^9}, {3.855047548425898*^9, 
+   3.855047818170385*^9}, {3.855047886371798*^9, 3.855048065900429*^9}, {
+   3.8550481836550817`*^9, 3.8550483827123423`*^9}, {3.855048506649942*^9, 
+   3.855048733064851*^9}, {3.8550491612637577`*^9, 3.855049364729706*^9}, {
+   3.855050079168208*^9, 3.8550501245804234`*^9}, {3.8550502257390614`*^9, 
+   3.8550505622086906`*^9}, 3.855050684242648*^9, {3.855051008560416*^9, 
+   3.855051078026619*^9}, {3.85505110845852*^9, 3.855051365490348*^9}, {
+   3.855052346799024*^9, 3.855053201627928*^9}, {3.855053234835935*^9, 
+   3.855053285113935*^9}, {3.8550533336683207`*^9, 3.855053369979102*^9}, {
+   3.855053472841366*^9, 
+   3.8550538445340853`*^9}},ExpressionUUID->"c2224da4-c65c-485b-843a-\
+c56be106e809"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Budan Fourier\[CloseCurlyQuote]s Theorem", "Subsection",
+ CellChangeTimes->{{3.8550274872688313`*^9, 3.855027492307322*^9}, {
+  3.85502758096784*^9, 
+  3.8550275850765*^9}},ExpressionUUID->"a8b5dc3d-c1ce-4ede-80b9-6111fde44566"],
+
+Cell["", "Text",ExpressionUUID->"328bb522-6650-4b2b-9eab-27eca8995b0f"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Exercise 2", "Section",
+ CellChangeTimes->{{3.85502747001057*^9, 3.855027483029833*^9}, {
+  3.855027592102572*^9, 
+  3.855027593003137*^9}},ExpressionUUID->"c36450ea-12ce-4743-9750-\
+b2d4594473d2"],
+
+Cell["\<\
+Before proceeding with Descartes Rule of Signs and Boudan Fourier\
+\[CloseCurlyQuote]s Algorithm, we are going to implement a function V which \
+will be indispensable for both algorithms. We are going to call V to the \
+function that given a sequence S of integer values, counts the number of \
+changes of sign in it.\
+\>", "Text",
+ CellChangeTimes->{{3.855031165869549*^9, 
+  3.855031350064711*^9}},ExpressionUUID->"afa6f9fe-b1e8-44b9-b81a-\
+945c93a0962e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"V", "[", "S_", "]"}], " ", ":=", " ", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"count", " ", "=", " ", "0"}], ",", "i"}], "}"}], ",", " ", 
+    RowBox[{
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{"i", "=", "2"}], ",", " ", 
+       RowBox[{"i", " ", "<=", " ", 
+        RowBox[{"Length", "[", "L", "]"}]}], ",", " ", 
+       RowBox[{"i", "++"}], ",", " ", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"S", "[", 
+            RowBox[{"[", 
+             RowBox[{"i", "-", "1"}], "]"}], "]"}], "*", 
+           RowBox[{"S", "[", 
+            RowBox[{"[", "i", "]"}], "]"}]}], " ", "==", " ", "0"}], ",", " ", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"S", "[", 
+              RowBox[{"[", 
+               RowBox[{"i", "-", "1"}], "]"}], "]"}], "<", "0"}], " ", "||", 
+            " ", 
+            RowBox[{
+             RowBox[{"S", "[", 
+              RowBox[{"[", "i", "]"}], "]"}], " ", "<", "0"}]}], ",", " ", 
+           RowBox[{"count", "++"}]}], "]"}], ",", " ", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"S", "[", 
+              RowBox[{"[", 
+               RowBox[{"i", "-", "1"}], "]"}], "]"}], "*", 
+             RowBox[{"S", "[", 
+              RowBox[{"[", "i", "]"}], "]"}]}], " ", "<", " ", "0"}], ",", 
+           " ", 
+           RowBox[{"count", "++"}]}], "]"}]}], "]"}]}], "]"}], ";", 
+     RowBox[{"Return", "[", "count", "]"}]}]}], "]"}]}]], "Code",
+ CellChangeTimes->{{3.855028688600209*^9, 3.85502873245991*^9}, {
+  3.8550287658351088`*^9, 3.85502878849149*^9}, {3.855028890045841*^9, 
+  3.8550289156322737`*^9}, {3.85502898899629*^9, 3.855029021380124*^9}, {
+  3.855029194026976*^9, 3.855029203890683*^9}, {3.855029392153516*^9, 
+  3.855029516751287*^9}, {3.85502955028889*^9, 3.855029596198139*^9}, {
+  3.855029627516474*^9, 3.855029653402371*^9}, {3.8550296923443193`*^9, 
+  3.855029705405115*^9}, {3.855029889382472*^9, 3.855029910772246*^9}, {
+  3.855031310419183*^9, 
+  3.855031322003351*^9}},ExpressionUUID->"f9556efc-1c49-4b6c-801a-\
+b7a2683e2fdc"],
+
+Cell["Here we can see some examples of the latter function:", "Text",
+ CellChangeTimes->{{3.855031360218854*^9, 
+  3.855031381349512*^9}},ExpressionUUID->"7d672541-4984-402b-b119-\
+94adc23b2c95"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"V", "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "0", ",", 
+    RowBox[{"-", "1"}], ",", "5", ",", 
+    RowBox[{"-", "6"}]}], "}"}], "]"}], "\n", 
+ RowBox[{"V", "[", 
+  RowBox[{"{", 
+   RowBox[{"3", ",", 
+    RowBox[{"-", "5"}], ",", "4", ",", "6"}], "}"}], "]"}], "\n", 
+ RowBox[{"V", "[", 
+  RowBox[{"{", 
+   RowBox[{"11", ",", 
+    RowBox[{"-", "33"}], ",", 
+    RowBox[{"-", "45"}], ",", "3", ",", 
+    RowBox[{"-", "1"}]}], "}"}], "]"}]}], "Code",
+ CellChangeTimes->{{3.855029672514367*^9, 3.855029681406999*^9}, {
+  3.855029721107963*^9, 3.855029745643628*^9}, {3.855029849270089*^9, 
+  3.8550298498221083`*^9}, {3.855029927971784*^9, 3.855029929089213*^9}, {
+  3.8550313901671543`*^9, 3.855031428917049*^9}},
+ CellLabel->"In[52]:=",ExpressionUUID->"a272e98e-0fea-47cb-881a-dc0467404804"],
+
+Cell[BoxData["3"], "Output",
+ CellChangeTimes->{{3.855029920030179*^9, 3.855029929686036*^9}, 
+   3.855030783798705*^9, {3.855031406813917*^9, 3.8550314292628613`*^9}},
+ CellLabel->"Out[52]=",ExpressionUUID->"ca331c04-d1dc-4619-8095-c6dfae3519a8"],
+
+Cell[BoxData["2"], "Output",
+ CellChangeTimes->{{3.855029920030179*^9, 3.855029929686036*^9}, 
+   3.855030783798705*^9, {3.855031406813917*^9, 3.855031429264426*^9}},
+ CellLabel->"Out[53]=",ExpressionUUID->"7e1266c3-db67-42e8-ae9f-8a4c14e171e3"],
+
+Cell[BoxData["3"], "Output",
+ CellChangeTimes->{{3.855029920030179*^9, 3.855029929686036*^9}, 
+   3.855030783798705*^9, {3.855031406813917*^9, 3.855031429266097*^9}},
+ CellLabel->"Out[54]=",ExpressionUUID->"861f5a2c-9321-4894-996e-fdbc044708fd"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Descartes Rule of Signs", "Subsection",
+ CellChangeTimes->{{3.8550274872688313`*^9, 
+  3.855027492307322*^9}},ExpressionUUID->"cf640be5-1daf-4dd5-981e-\
+eada060fcfe2"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Descartes", "[", "p_", "]"}], ":=", " ", 
+  RowBox[{"Return", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"V", "[", 
+      RowBox[{"CoefficientList", "[", 
+       RowBox[{"p", ",", "x"}], "]"}], "]"}], ",", 
+     RowBox[{"V", "[", 
+      RowBox[{"CoefficientList", "[", 
+       RowBox[{
+        RowBox[{"-", "p"}], ",", "x"}], "]"}], "]"}]}], "}"}], 
+   "]"}]}]], "Code",
+ CellChangeTimes->{{3.855027721715562*^9, 3.855027731129734*^9}, {
+  3.8550286669768877`*^9, 3.855028667112665*^9}, {3.8550305802563457`*^9, 
+  3.85503062704469*^9}, {3.85503073636767*^9, 3.855030850934132*^9}, {
+  3.855030969664083*^9, 3.855030973511525*^9}, {3.855052301082059*^9, 
+  3.855052301940382*^9}},
+ CellLabel->
+  "In[162]:=",ExpressionUUID->"19a93a01-b777-494e-9bcc-70e531f577a1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Budan Fourier\[CloseCurlyQuote]s ", "Subsection",
+ CellChangeTimes->{{3.8550274872688313`*^9, 3.855027492307322*^9}, {
+  3.85502758096784*^9, 
+  3.8550276034512568`*^9}},ExpressionUUID->"cc73fddf-5e6a-4427-8872-\
+faab58e10996"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"BudanFourier", "[", 
+   RowBox[{"p_", ",", "x0_", ",", "x1_"}], "]"}], ":=", " ", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"n", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"Length", "[", 
+        RowBox[{"CoefficientList", "[", 
+         RowBox[{"p", ",", "x"}], "]"}], "]"}], " ", "-", "1"}]}], "}"}], ",",
+     " ", 
+    RowBox[{
+     RowBox[{"d", " ", "=", " ", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"D", "[", 
+         RowBox[{"p", ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"x", ",", "i"}], "}"}]}], "]"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", " ", "0", ",", " ", "n"}], "}"}]}], "]"}]}], ";", 
+     " ", 
+     RowBox[{"Return", "[", 
+      RowBox[{
+       RowBox[{"V", "[", 
+        RowBox[{"d", "/.", " ", 
+         RowBox[{"x", "->", "x0"}]}], "]"}], "-", " ", 
+       RowBox[{"V", "[", 
+        RowBox[{"d", "/.", " ", 
+         RowBox[{"x", "->", "x1"}]}], "]"}]}], "]"}], ";"}]}], 
+   "]"}]}]], "Code",
+ CellChangeTimes->{{3.855027734780281*^9, 3.85502775931188*^9}, {
+  3.8550316427894897`*^9, 3.855031649757012*^9}, {3.855031689056828*^9, 
+  3.8550317619734793`*^9}, {3.8550319891496067`*^9, 3.8550322230164413`*^9}, {
+  3.855032939515007*^9, 3.855032959584392*^9}},
+ CellLabel->
+  "In[144]:=",ExpressionUUID->"97ac4f59-0c3c-4432-bd43-cdd76835523e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Test Examples", "Subsection",
+ CellChangeTimes->{{3.8550274872688313`*^9, 3.855027492307322*^9}, {
+  3.85502758096784*^9, 
+  3.8550276303435087`*^9}},ExpressionUUID->"7b5fd60d-de59-4aad-bceb-\
+b10dc92c5087"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[""], "Code",
+ CellChangeTimes->{{3.855028738245513*^9, 3.855028745332981*^9}, {
+   3.85502995252857*^9, 3.855029966447714*^9}, {3.8550305396725473`*^9, 
+   3.855030545313279*^9}, {3.8550306819513597`*^9, 3.8550306870703297`*^9}, 
+   3.855030742927526*^9, {3.855031656941154*^9, 3.85503166473033*^9}, {
+   3.855031719415312*^9, 3.8550317592370996`*^9}, {3.8550318276773787`*^9, 
+   3.855031833737512*^9}, {3.855031874475444*^9, 3.855031882246937*^9}, {
+   3.855031930734952*^9, 3.855031969377862*^9}, {3.855032237129994*^9, 
+   3.8550322732845583`*^9}, {3.855032307647139*^9, 3.855032375875432*^9}, {
+   3.8550329845824633`*^9, 3.855033011701296*^9}, {3.855046732291547*^9, 
+   3.855046734672022*^9}, {3.855052264531427*^9, 3.85505229788594*^9}, {
+   3.855053868638081*^9, 
+   3.8550539145894003`*^9}},ExpressionUUID->"143c267a-92ed-44ca-82eb-\
+8036c5c25903"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"3", ",", "0"}], "}"}]], "Output",
+ CellChangeTimes->{{3.855029960912386*^9, 3.855029967022698*^9}, 
+   3.855030545763152*^9, 3.855030682699689*^9, 3.855030743259882*^9, 
+   3.8550316614309177`*^9, {3.855031728955269*^9, 3.855031763561801*^9}, 
+   3.855031843811921*^9, {3.855031876549985*^9, 3.8550318831304502`*^9}, {
+   3.85503193976819*^9, 3.8550319698955708`*^9}, {3.855032251756035*^9, 
+   3.855032378755694*^9}, {3.855032972479979*^9, 3.8550330122054358`*^9}, 
+   3.855046686922456*^9, {3.855052271713902*^9, 3.855052290830407*^9}, {
+   3.855053879387856*^9, 3.8550538928694477`*^9}},
+ CellLabel->
+  "Out[166]=",ExpressionUUID->"02e8f79e-2dec-46b6-a7b4-a5cbfa693220"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{Full, Full},
+WindowMargins->{{Automatic, 119}, {-13, Automatic}},
+FrontEndVersion->"13.0 for Mac OS X x86 (64-bit) (February 4, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"4bae0bbe-ce03-4600-a141-dc4eef1f0e00"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 163, 3, 98, "Title",ExpressionUUID->"e32d3fbc-34f8-4c98-988f-ad75c20d2207"],
+Cell[746, 27, 163, 3, 31, "Subsubtitle",ExpressionUUID->"e21a38c8-0626-4a15-8058-1ea82d3f2774"],
+Cell[CellGroupData[{
+Cell[934, 34, 154, 3, 67, "Section",ExpressionUUID->"f47cc5e1-2276-43a3-8509-b307968cc66f"],
+Cell[CellGroupData[{
+Cell[1113, 41, 224, 4, 54, "Subsection",ExpressionUUID->"653ad6ef-4acb-46dc-957f-14695f01fa83"],
+Cell[1340, 47, 36957, 1002, 905, "Text",ExpressionUUID->"c2224da4-c65c-485b-843a-c56be106e809"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[38334, 1054, 234, 3, 54, "Subsection",ExpressionUUID->"a8b5dc3d-c1ce-4ede-80b9-6111fde44566"],
+Cell[38571, 1059, 71, 0, 35, "Text",ExpressionUUID->"328bb522-6650-4b2b-9eab-27eca8995b0f"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[38691, 1065, 203, 4, 67, "Section",ExpressionUUID->"c36450ea-12ce-4743-9750-b2d4594473d2"],
+Cell[38897, 1071, 467, 9, 58, "Text",ExpressionUUID->"afa6f9fe-b1e8-44b9-b81a-945c93a0962e"],
+Cell[39367, 1082, 2260, 57, 52, "Code",ExpressionUUID->"f9556efc-1c49-4b6c-801a-b7a2683e2fdc"],
+Cell[41630, 1141, 195, 3, 35, "Text",ExpressionUUID->"7d672541-4984-402b-b119-94adc23b2c95"],
+Cell[CellGroupData[{
+Cell[41850, 1148, 827, 20, 91, "Code",ExpressionUUID->"a272e98e-0fea-47cb-881a-dc0467404804"],
+Cell[42680, 1170, 247, 3, 34, "Output",ExpressionUUID->"ca331c04-d1dc-4619-8095-c6dfae3519a8"],
+Cell[42930, 1175, 245, 3, 34, "Output",ExpressionUUID->"7e1266c3-db67-42e8-ae9f-8a4c14e171e3"],
+Cell[43178, 1180, 245, 3, 34, "Output",ExpressionUUID->"861f5a2c-9321-4894-996e-fdbc044708fd"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[43460, 1188, 173, 3, 54, "Subsection",ExpressionUUID->"cf640be5-1daf-4dd5-981e-eada060fcfe2"],
+Cell[43636, 1193, 804, 20, 52, "Code",ExpressionUUID->"19a93a01-b777-494e-9bcc-70e531f577a1"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[44477, 1218, 233, 4, 54, "Subsection",ExpressionUUID->"cc73fddf-5e6a-4427-8872-faab58e10996"],
+Cell[44713, 1224, 1386, 38, 52, "Code",ExpressionUUID->"97ac4f59-0c3c-4432-bd43-cdd76835523e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[46136, 1267, 213, 4, 54, "Subsection",ExpressionUUID->"7b5fd60d-de59-4aad-bceb-b10dc92c5087"],
+Cell[CellGroupData[{
+Cell[46374, 1275, 871, 13, 52, "Code",ExpressionUUID->"143c267a-92ed-44ca-82eb-8036c5c25903"],
+Cell[47248, 1290, 713, 12, 34, "Output",ExpressionUUID->"02e8f79e-2dec-46b6-a7b4-a5cbfa693220"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
