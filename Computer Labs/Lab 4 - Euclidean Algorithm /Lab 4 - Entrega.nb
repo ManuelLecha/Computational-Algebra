@@ -1,0 +1,414 @@
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[         0,          0]
+NotebookDataLength[     15055,        413]
+NotebookOptionsPosition[     13042,        363]
+NotebookOutlinePosition[     13442,        379]
+CellTagsIndexPosition[     13399,        376]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Lab 4: Euclidean Algorithm", "Title",
+ CellChangeTimes->{{3.856001713081359*^9, 
+  3.85600172439815*^9}},ExpressionUUID->"53bc13ba-8855-4847-8217-\
+374ecec8b5cc"],
+
+Cell["Manuel Lecha S\[AAcute]nchez", "Subtitle",
+ CellChangeTimes->{{3.856001800829862*^9, 
+  3.856001804461215*^9}},ExpressionUUID->"169e137f-aef2-4072-b42f-\
+47dc18138f16"],
+
+Cell["Thursday 31/03", "Subsubtitle",
+ CellChangeTimes->{{3.856001906301586*^9, 
+  3.856001940722932*^9}},ExpressionUUID->"4ee991ef-6643-48ad-875e-\
+3142c6eef680"],
+
+Cell[CellGroupData[{
+
+Cell["Homework", "Section",
+ CellChangeTimes->{{3.856004829351286*^9, 
+  3.856004843443063*^9}},ExpressionUUID->"80eaa74a-e0d6-4f41-b33c-\
+bddc9b011066"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ StyleBox["Exercise 2: ",
+  FontWeight->"Bold"],
+ "Design and implement a recursive algorithm which allows the computation of \
+the gcd of any pair of integers by using the three properties mentioned \
+above. Show that the algorithm concludes in a finite number of steps."
+}], "Subsection",
+ CellChangeTimes->{{3.856004849957363*^9, 
+  3.8560048844934587`*^9}},ExpressionUUID->"bd2831e0-fc78-481f-ab5a-\
+ab81afbc11b0"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"RecursiveGCD", "[", 
+    RowBox[{"a_", ",", "0"}], "]"}], ":=", " ", "a"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"RecursiveGCD", "[", 
+   RowBox[{"a_", ",", "b_"}], "]"}], " ", ":=", " ", 
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"EvenQ", "[", "a", "]"}], "&&", 
+     RowBox[{"EvenQ", "[", "b", "]"}]}], ",", 
+    RowBox[{"2", "*", 
+     RowBox[{"RecursiveGCD", "[", 
+      RowBox[{
+       RowBox[{"a", "/", "2"}], ",", 
+       RowBox[{"b", "/", "2"}]}], "]"}]}], ",", " ", 
+    RowBox[{
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"EvenQ", "[", "a", "]"}], ",", 
+       RowBox[{"RecursiveGCD", "[", 
+        RowBox[{
+         RowBox[{"a", "/", "2"}], ",", "b"}], "]"}], ",", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"EvenQ", "[", "b", "]"}], ",", 
+         RowBox[{"RecursiveGCD", "[", 
+          RowBox[{"a", ",", 
+           RowBox[{"b", "/", "2"}]}], "]"}]}], "]"}]}], "]"}], ";", " ", 
+     RowBox[{"RecursiveGCD", "[", 
+      RowBox[{
+       RowBox[{"Min", "[", 
+        RowBox[{"a", ",", "b"}], "]"}], ",", 
+       RowBox[{"Abs", "[", 
+        RowBox[{"a", "-", "b"}], "]"}]}], "]"}]}]}], "]"}]}]}], "Code",
+ CellChangeTimes->{{3.85600687410643*^9, 3.856006895065084*^9}, {
+  3.8560070652734222`*^9, 3.8560070724487534`*^9}, {3.8560071819915657`*^9, 
+  3.856007184212454*^9}, {3.856007676135206*^9, 3.856007707975937*^9}, {
+  3.856007756502425*^9, 3.85600808458002*^9}, {3.856008226547185*^9, 
+  3.856008387551713*^9}, {3.8560084212026157`*^9, 3.856008430852275*^9}, {
+  3.8560085179765797`*^9, 3.856008564675599*^9}, {3.856008608312963*^9, 
+  3.856008612591654*^9}},
+ CellLabel->
+  "In[1206]:=",ExpressionUUID->"b88035fa-ea30-40bb-a132-88bd6214ebd2"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ StyleBox["Exercise 3: ",
+  FontWeight->"Bold"],
+ "Show that the algebraic complexity of this algorithm is at most O((log \
+N)^2), with N=max(a,b)."
+}], "Subsection",
+ CellChangeTimes->{{3.856005420306766*^9, 
+  3.856005433450676*^9}},ExpressionUUID->"67988ad2-399b-4d1c-8b60-\
+c83774f95152"],
+
+Cell["", "Text",
+ CellChangeTimes->{{3.856008838792118*^9, 
+  3.8560088440195007`*^9}},ExpressionUUID->"409a288f-3f23-4e75-88bc-\
+9eebad971512"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ StyleBox["Exercise 4: ",
+  FontWeight->"Bold"],
+ "Design and implement an iterative version of this algorithm."
+}], "Subsection",
+ CellChangeTimes->{{3.856005443460997*^9, 
+  3.8560054602968893`*^9}},ExpressionUUID->"01befb3c-e256-4ca3-a904-\
+d22185ac5736"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"IterativeGCD", "[", 
+    RowBox[{"a_", ",", "b_"}], "]"}], ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"d", "=", "1"}], ",", "t", ",", "f", ",", "g"}], "}"}], ",", 
+     " ", "\n", 
+     RowBox[{
+      RowBox[{"f", "=", "a"}], ";", 
+      RowBox[{"g", "=", "b"}], ";", "\n", 
+      RowBox[{"While", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"EvenQ", "[", "f", "]"}], "&&", 
+         RowBox[{"EvenQ", "[", "g", "]"}]}], ",", " ", 
+        RowBox[{
+         RowBox[{"f", "=", 
+          RowBox[{"f", "/", "2"}]}], ";", 
+         RowBox[{"g", "=", 
+          RowBox[{"g", "/", "2"}]}], ";", 
+         RowBox[{"d", "=", 
+          RowBox[{"2", "*", "d"}]}]}]}], "]"}], ";", " ", "\n", 
+      RowBox[{"While", "[", 
+       RowBox[{
+        RowBox[{"f", "!=", "0"}], ",", "\n", "\t", 
+        RowBox[{
+         RowBox[{"While", "[", 
+          RowBox[{
+           RowBox[{"EvenQ", "[", "f", "]"}], ",", 
+           RowBox[{"f", "=", 
+            RowBox[{"f", "/", "2"}]}]}], "]"}], ";", "\n", "\t", 
+         RowBox[{"While", "[", 
+          RowBox[{
+           RowBox[{"EvenQ", "[", "g", "]"}], ",", 
+           RowBox[{"g", "=", 
+            RowBox[{"g", "/", "2"}]}]}], "]"}], ";", "\n", "\t", 
+         RowBox[{"t", "=", 
+          RowBox[{
+           RowBox[{"Abs", "[", 
+            RowBox[{"f", "-", "g"}], "]"}], "/", "2"}]}], ";", "\n", "\t", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"f", ">=", "g"}], ",", 
+           RowBox[{"f", "=", "t"}], ",", 
+           RowBox[{"g", "=", "t"}]}], "]"}], ";"}]}], "\n", "]"}], ";", "\n", 
+      
+      RowBox[{"Return", "[", 
+       RowBox[{"d", "*", "g"}], "]"}], "\n", ";"}]}], "]"}]}], "\n"}], "\n", 
+ RowBox[{"IterativeGCD", "[", 
+  RowBox[{"12", ",", "6"}], "]"}]}], "Code",
+ CellChangeTimes->{{3.856005511759734*^9, 3.8560055527942553`*^9}, {
+   3.856005807311503*^9, 3.8560060121092367`*^9}, {3.856006049334917*^9, 
+   3.85600611957918*^9}, {3.856006171076127*^9, 3.856006299837935*^9}, {
+   3.8560065622786493`*^9, 3.856006562699486*^9}, {3.856006648814396*^9, 
+   3.85600664908494*^9}, 3.856006738957893*^9, {3.8560067851128473`*^9, 
+   3.856006860267761*^9}, {3.856007212232514*^9, 3.856007235320643*^9}, {
+   3.8560072805831757`*^9, 3.8560073112225437`*^9}, 3.856007403551408*^9, {
+   3.856007456249778*^9, 3.856007500018869*^9}, {3.856007662471938*^9, 
+   3.856007663077899*^9}},
+ CellLabel->
+  "In[1182]:=",ExpressionUUID->"92cc89db-2fa9-48f8-b036-65492e680af3"],
+
+Cell[BoxData["6"], "Output",
+ CellChangeTimes->{
+  3.8560066023899937`*^9, 3.856006663202314*^9, 3.856006749548841*^9, {
+   3.856006846823984*^9, 3.8560068640356827`*^9}, {3.85600721538256*^9, 
+   3.856007235911907*^9}, {3.856007289755118*^9, 3.856007311793412*^9}, 
+   3.856007404551097*^9, {3.856007460820876*^9, 3.85600750053999*^9}, {
+   3.856007663557294*^9, 3.856007666708557*^9}, 3.856010120857744*^9},
+ CellLabel->
+  "Out[1183]=",ExpressionUUID->"75e68bd8-edd7-4e13-802c-74af4c3fdf13"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ StyleBox[" Exercise 5:",
+  FontWeight->"Bold"],
+ " Modify either of the versions (recursive or iterative) of your code in \
+such a way that the output is a relation of the form {r,s,u}, with \
+r.a+s.b=u=gcd(a,b)."
+}], "Subsection",
+ CellChangeTimes->{{3.8560054956514797`*^9, 
+  3.856005500873748*^9}},ExpressionUUID->"7fb5a87c-4088-4458-8166-\
+85f5e77bb05b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"IterativeExtendedGCD", "[", 
+    RowBox[{"a_", ",", "b_"}], "]"}], ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"d", "=", "1"}], ",", "t", ",", "f", ",", "g", ",", "f2", ",", 
+       "g2", ",", 
+       RowBox[{"s1", "=", "0"}], ",", 
+       RowBox[{"s2", "=", "1"}], ",", 
+       RowBox[{"t1", "=", "1"}], ",", 
+       RowBox[{"t2", "=", "0"}]}], "}"}], ",", " ", "\n", 
+     RowBox[{
+      RowBox[{"f", "=", "a"}], ";", 
+      RowBox[{"g", "=", "b"}], ";", "\n", 
+      RowBox[{"While", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"EvenQ", "[", "f", "]"}], "&&", 
+         RowBox[{"EvenQ", "[", "g", "]"}]}], ",", " ", 
+        RowBox[{
+         RowBox[{"f", "=", 
+          RowBox[{"f", "/", "2"}]}], ";", 
+         RowBox[{"g", "=", 
+          RowBox[{"g", "/", "2"}]}], ";", 
+         RowBox[{"d", "=", 
+          RowBox[{"2", "*", "d"}]}]}]}], "]"}], ";", " ", "\n", 
+      RowBox[{"f2", "=", "f"}], ";", 
+      RowBox[{"g2", "=", "g"}], ";", "\n", 
+      RowBox[{"While", "[", 
+       RowBox[{
+        RowBox[{"f", "!=", "0"}], ",", "\n", "\t", 
+        RowBox[{
+         RowBox[{"While", "[", 
+          RowBox[{
+           RowBox[{"EvenQ", "[", "f", "]"}], ",", 
+           RowBox[{
+            RowBox[{"f", "=", 
+             RowBox[{"f", "/", "2"}]}], ";", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"EvenQ", "[", "t2", "]"}], "&&", 
+               RowBox[{"EvenQ", "[", "s2", "]"}]}], ",", 
+              RowBox[{
+               RowBox[{"t2", "=", 
+                RowBox[{"t2", "/", "2"}]}], ";", 
+               RowBox[{"s2", "=", 
+                RowBox[{"s2", "/", "2"}]}], ";"}], ",", 
+              RowBox[{
+               RowBox[{"s2", "=", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{"s2", "+", "g2"}], ")"}], "/", "2"}]}], ";", 
+               RowBox[{"t2", "=", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{"t2", "-", "f2"}], ")"}], "/", "2"}]}]}]}], 
+             "]"}]}]}], "]"}], ";", "\n", "\t", 
+         RowBox[{"While", "[", 
+          RowBox[{
+           RowBox[{"EvenQ", "[", "g", "]"}], ",", 
+           RowBox[{
+            RowBox[{"g", "=", 
+             RowBox[{"g", "/", "2"}]}], ";", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"EvenQ", "[", "t1", "]"}], "&&", 
+               RowBox[{"EvenQ", "[", "s1", "]"}]}], ",", 
+              RowBox[{
+               RowBox[{"t1", "=", 
+                RowBox[{"t1", "/", "2"}]}], ";", 
+               RowBox[{"s1", "=", 
+                RowBox[{"s1", "/", "2"}]}], ";"}], ",", 
+              RowBox[{
+               RowBox[{"s1", "=", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{"s1", "+", "g2"}], ")"}], "/", "2"}]}], ";", 
+               RowBox[{"t1", "=", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{"t1", "-", "f2"}], ")"}], "/", "2"}]}]}]}], 
+             "]"}]}]}], "]"}], ";", "\n", "\t", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"f", ">=", "g"}], ",", 
+           RowBox[{
+            RowBox[{"f", "=", 
+             RowBox[{"f", "-", "g"}]}], ";", 
+            RowBox[{"s2", "=", 
+             RowBox[{"s2", "-", "s1"}]}], ";", 
+            RowBox[{"t2", "=", 
+             RowBox[{"t2", "-", "t1"}]}]}], ",", 
+           RowBox[{
+            RowBox[{"g", "=", 
+             RowBox[{"g", "-", "f"}]}], ";", 
+            RowBox[{"s1", "=", 
+             RowBox[{"s1", "-", "s2"}]}], ";", 
+            RowBox[{"t1", "=", 
+             RowBox[{"t1", "-", "t2"}]}]}]}], "]"}], ";"}]}], "\n", "]"}], 
+      ";", "\n", 
+      RowBox[{"Return", "[", 
+       RowBox[{"{", 
+        RowBox[{"s1", ",", "t1", ",", 
+         RowBox[{"d", "*", "g"}]}], "}"}], "]"}], "\n", ";"}]}], "]"}]}], 
+  "\n"}], "\n", 
+ RowBox[{"IterativeExtendedGCD", "[", 
+  RowBox[{"36", ",", "42"}], "]"}]}], "Code",
+ CellChangeTimes->{{3.856005610877549*^9, 3.856005695944056*^9}, {
+  3.8560057870082197`*^9, 3.8560057930635643`*^9}, {3.856007430457551*^9, 
+  3.856007435473246*^9}, {3.856007644929304*^9, 3.8560076680446663`*^9}, {
+  3.8560091108344517`*^9, 3.856009395541539*^9}, {3.856009443211657*^9, 
+  3.856009515687797*^9}, {3.856009554075042*^9, 3.856009561261682*^9}, {
+  3.856009859503364*^9, 3.856009932404738*^9}, {3.8560100468936453`*^9, 
+  3.856010053599457*^9}, {3.856010085801032*^9, 3.856010161355073*^9}, {
+  3.8560102099737253`*^9, 3.856010262819935*^9}, {3.8560107456622*^9, 
+  3.856010749487618*^9}, {3.85601081574953*^9, 3.856010832436452*^9}},
+ CellLabel->
+  "In[1204]:=",ExpressionUUID->"b96bf92c-5bd2-431d-9473-c375b2aadbe0"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"13", ",", 
+   RowBox[{"-", "11"}], ",", "6"}], "}"}]], "Output",
+ CellChangeTimes->{{3.8560056155309553`*^9, 3.8560056944875927`*^9}, {
+   3.856007435812956*^9, 3.856007437440714*^9}, {3.856007653239502*^9, 
+   3.856007656905744*^9}, {3.856010120871063*^9, 3.8560101767578793`*^9}, 
+   3.85601026349789*^9, 3.8560107501610203`*^9, {3.856010826073929*^9, 
+   3.8560108338638067`*^9}},
+ CellLabel->
+  "Out[1205]=",ExpressionUUID->"7cc9ceeb-933f-4d88-bf28-512ab3beac93"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{Full, Full},
+WindowMargins->{{Automatic, 120}, {-60, Automatic}},
+FrontEndVersion->"13.0 for Mac OS X x86 (64-bit) (February 4, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"9f8552e3-1ab6-4c43-9108-edabcc95237e"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[422, 15, 168, 3, 98, "Title",ExpressionUUID->"53bc13ba-8855-4847-8217-374ecec8b5cc"],
+Cell[593, 20, 174, 3, 53, "Subtitle",ExpressionUUID->"169e137f-aef2-4072-b42f-47dc18138f16"],
+Cell[770, 25, 163, 3, 31, "Subsubtitle",ExpressionUUID->"4ee991ef-6643-48ad-875e-3142c6eef680"],
+Cell[CellGroupData[{
+Cell[958, 32, 153, 3, 67, "Section",ExpressionUUID->"80eaa74a-e0d6-4f41-b33c-bddc9b011066"],
+Cell[CellGroupData[{
+Cell[1136, 39, 434, 9, 81, "Subsection",ExpressionUUID->"bd2831e0-fc78-481f-ab5a-ab81afbc11b0"],
+Cell[1573, 50, 1754, 45, 72, "Code",ExpressionUUID->"b88035fa-ea30-40bb-a132-88bd6214ebd2"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3364, 100, 308, 8, 54, "Subsection",ExpressionUUID->"67988ad2-399b-4d1c-8b60-c83774f95152"],
+Cell[3675, 110, 144, 3, 35, "Text",ExpressionUUID->"409a288f-3f23-4e75-88bc-9eebad971512"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3856, 118, 274, 7, 54, "Subsection",ExpressionUUID->"01befb3c-e256-4ca3-a904-d22185ac5736"],
+Cell[CellGroupData[{
+Cell[4155, 129, 2564, 64, 281, "Code",ExpressionUUID->"92cc89db-2fa9-48f8-b036-65492e680af3"],
+Cell[6722, 195, 493, 8, 34, "Output",ExpressionUUID->"75e68bd8-edd7-4e13-802c-74af4c3fdf13"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7264, 209, 376, 9, 54, "Subsection",ExpressionUUID->"7fb5a87c-4088-4458-8166-85f5e77bb05b"],
+Cell[CellGroupData[{
+Cell[7665, 222, 4815, 123, 281, "Code",ExpressionUUID->"b96bf92c-5bd2-431d-9473-c375b2aadbe0"],
+Cell[12483, 347, 507, 10, 34, "Output",ExpressionUUID->"7cc9ceeb-933f-4d88-bf28-512ab3beac93"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
