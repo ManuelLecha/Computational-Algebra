@@ -1,0 +1,690 @@
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[         0,          0]
+NotebookDataLength[     25061,        689]
+NotebookOptionsPosition[     21336,        619]
+NotebookOutlinePosition[     21732,        635]
+CellTagsIndexPosition[     21689,        632]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Lab 8: Toom-Cook & FFT", "Title",
+ CellChangeTimes->{{3.859283565409643*^9, 
+  3.8592836099584703`*^9}},ExpressionUUID->"2eabbfc3-9c66-4f83-a415-\
+6bd2f7cb16f1"],
+
+Cell["Manuel Lecha", "Subtitle",
+ CellChangeTimes->{{3.8592836126585903`*^9, 
+  3.8592836152006397`*^9}},ExpressionUUID->"afa797c3-fe4f-4c1f-be76-\
+b06da96c9f80"],
+
+Cell[CellGroupData[{
+
+Cell["Given Code", "Section",
+ CellChangeTimes->{{3.859283663351*^9, 
+  3.859283668706208*^9}},ExpressionUUID->"c2105e10-467e-4050-a183-\
+6d74fd92ec0e"],
+
+Cell[CellGroupData[{
+
+Cell["Karatsuba", "Subsection",
+ CellChangeTimes->{{3.859283690510831*^9, 
+  3.859283692061001*^9}},ExpressionUUID->"cdb5618e-51fb-4ddd-b7ca-\
+f879b9396793"],
+
+Cell["\<\
+In the next chunk of code we provide an auxiliary function for Karatsuba\
+\[CloseCurlyQuote]s algorithm in order to filter the polynomial \
+\[OpenCurlyDoubleQuote]P_\[CloseCurlyDoubleQuote]  terms of  degree higher \
+than \[OpenCurlyDoubleQuote]n_\[CloseCurlyDoubleQuote] .  [rev_ :=  [\
+\[OpenCurlyDoubleQuote]reverse\[CloseCurlyDoubleQuote]] If True, lower than \
+\[OpenCurlyDoubleQuote]n_\[CloseCurlyDoubleQuote] ].\
+\>", "Text",
+ CellChangeTimes->{
+  3.859283937472534*^9},ExpressionUUID->"475e4938-883e-42b6-bc77-\
+607d4e3d10cc"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"FHT", "[", 
+     RowBox[{"P_", ",", "0"}], "]"}], " ", ":=", " ", 
+    RowBox[{"Return", "[", 
+     RowBox[{"Coefficient", "[", 
+      RowBox[{"P", ",", "x", ",", "0"}], "]"}], "]"}]}], ";"}], " "}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"FHT", "[", 
+    RowBox[{"P_", ",", "1", ",", "True"}], "]"}], " ", ":=", " ", 
+   RowBox[{"Return", "[", 
+    RowBox[{"P", " ", "-", " ", 
+     RowBox[{"Coefficient", "[", 
+      RowBox[{"P", ",", "x", ",", "0"}], "]"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"FHT", "[", 
+    RowBox[{"P_", ",", "n_", ",", 
+     RowBox[{"rev_", ":", "False"}]}], "]"}], " ", ":=", "  ", 
+   RowBox[{"Return", "[", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"!", "rev"}], ",", " ", 
+      RowBox[{"P", " ", "/.", " ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"x", "^", "exp_"}], " ", "/;", " ", 
+         RowBox[{"exp", " ", ">", " ", "n"}]}], " ", "->", " ", "0"}]}], ",", 
+      " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"P", " ", "/.", " ", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"x", "^", "exp_"}], " ", "/;", " ", 
+           RowBox[{"exp", " ", "<", " ", "n"}]}], " ", "->", " ", "0"}]}], 
+        ")"}], " ", "-", " ", 
+       RowBox[{"Coefficient", "[", 
+        RowBox[{"P", ",", "x", ",", "0"}], "]"}], " ", "-", " ", 
+       RowBox[{
+        RowBox[{"Coefficient", "[", 
+         RowBox[{"P", ",", "x", ",", "1"}], "]"}], "*", "x"}]}]}], "]"}], 
+    "]"}]}], ";"}]}], "Code",
+ CellChangeTimes->{{3.8592838718414383`*^9, 3.859283884596089*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"145e6422-ae5c-4dc3-9313-3286bc552d0e"],
+
+Cell["\<\
+The next line of code is completely unnecessary :P, but useful, we are simply \
+overriding an operator to algebraically expand the expression resulting of \
+the product between a polynomial with a monomial.\
+\>", "Text",
+ CellChangeTimes->{
+  3.859283955630116*^9},ExpressionUUID->"aa91fb3d-bf59-4dcf-9989-\
+8edcdb64d99e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"CircleDot", "[", 
+    RowBox[{"P_", ",", " ", "mon_"}], "]"}], " ", ":=", " ", 
+   RowBox[{"Expand", "[", 
+    RowBox[{"P", "*", "mon"}], "]"}]}], ";"}]], "Code",
+ CellChangeTimes->{3.859283891637244*^9},
+ CellLabel->"In[14]:=",ExpressionUUID->"1e12d5cf-bc61-4e7d-9e85-6393fa1512c6"],
+
+Cell[TextData[{
+ "Here we implement and abstract Karatsuba admitting ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    TemplateBox[<|"boxes" -> FormBox[
+        RowBox[{
+          StyleBox["m", "TI"], "\[LongEqual]", 
+          StyleBox["f", "TI"], 
+          RowBox[{"(", 
+            StyleBox["n", "TI"], ")"}]}], TraditionalForm], "errors" -> {}, 
+      "input" -> "m = f(n)", "state" -> "Boxes"|>,
+     "TeXAssistantTemplate"], "."}], TraditionalForm]],ExpressionUUID->
+  "2bcff0ca-ed95-4485-8640-f6aba4c6cc37"]
+}], "Text",
+ CellChangeTimes->{
+  3.8592839641213083`*^9},ExpressionUUID->"25519a8d-f2be-4827-b1ee-\
+0d2b23e33c80"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"AbstractKaratsuba", "[", 
+     RowBox[{"P_", ",", "Q_", ",", "1", ",", "f_"}], "]"}], " ", ":=", " ", 
+    RowBox[{"P", "*", "Q"}]}], ";"}], "\n"}], "\n", 
+ RowBox[{
+  RowBox[{"AbstractKaratsuba", "[", 
+   RowBox[{"P_", ",", "Q_", ",", "n_", ",", "f_"}], "]"}], ":=", " ", "\n", 
+  "\t", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "m", ",", "A", ",", "B", ",", "C", ",", "P0", ",", "P1", ",", "Q0", ",", 
+      "Q1"}], "}"}], ",", " ", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{"m", " ", "=", " ", 
+      RowBox[{"f", "[", "n", "]"}]}], ";", " ", 
+     RowBox[{"P0", " ", "=", " ", 
+      RowBox[{"FHT", "[", 
+       RowBox[{"P", ",", 
+        RowBox[{"m", "-", "1"}]}], "]"}]}], ";", " ", 
+     RowBox[{"P1", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"FHT", "[", 
+        RowBox[{"P", ",", "m", ",", "True"}], "]"}], "\[CircleDot]", 
+       RowBox[{"x", "^", 
+        RowBox[{"(", 
+         RowBox[{"-", "m"}], ")"}]}]}]}], ";", " ", 
+     RowBox[{"Q0", " ", "=", " ", 
+      RowBox[{"FHT", "[", 
+       RowBox[{"Q", ",", 
+        RowBox[{"m", "-", "1"}]}], "]"}]}], ";", " ", 
+     RowBox[{"Q1", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"FHT", "[", 
+        RowBox[{"Q", ",", "m", ",", "True"}], "]"}], "\[CircleDot]", 
+       RowBox[{"x", "^", 
+        RowBox[{"(", 
+         RowBox[{"-", "m"}], ")"}]}]}]}], ";", " ", "\n", "\t\t", 
+     RowBox[{"A", " ", "=", " ", 
+      RowBox[{"AbstractKaratsuba", "[", 
+       RowBox[{"P1", ",", "Q1", ",", "m", ",", "f"}], "]"}]}], ";", " ", 
+     RowBox[{"B", " ", "=", " ", 
+      RowBox[{"AbstractKaratsuba", "[", 
+       RowBox[{
+        RowBox[{"P0", "+", "P1"}], ",", 
+        RowBox[{"Q0", "+", "Q1"}], ",", "m", ",", "f"}], "]"}]}], ";", " ", 
+     RowBox[{"C", " ", "=", " ", 
+      RowBox[{"AbstractKaratsuba", "[", 
+       RowBox[{"P0", ",", "Q0", ",", "m", ",", "f"}], "]"}]}], ";", " ", "\n",
+      "\t\t", 
+     RowBox[{"Return", "[", 
+      RowBox[{
+       RowBox[{"A", "\[CircleDot]", 
+        RowBox[{"x", "^", "n"}]}], " ", "+", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"B", "-", 
+          RowBox[{"(", 
+           RowBox[{"A", "+", "C"}], ")"}]}], ")"}], "\[CircleDot]", 
+        RowBox[{"x", "^", "m"}]}], " ", "+", " ", "C"}], "]"}], ";"}]}], "\n",
+    "\t", "]"}]}]}], "Code",
+ CellChangeTimes->{3.859283903751026*^9},
+ CellLabel->"In[15]:=",ExpressionUUID->"b714fab6-f1b2-41f9-b813-623c10e1775e"],
+
+Cell[TextData[{
+ "Defining the function ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["f", "TI"], 
+         RowBox[{"(", 
+           StyleBox["n", "TI"], ")"}], ":", "\[LongEqual]", 
+         FractionBox[
+          StyleBox["n", "TI"], "2"]}], TraditionalForm], "errors" -> {}, 
+     "input" -> "f(n) := \\frac{n}{2}", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "38948c0f-781a-4d85-b758-f1ce4ea57080"]
+}], "Text",
+ CellChangeTimes->{
+  3.859283981560039*^9},ExpressionUUID->"d2aff7a6-ebe0-4278-938f-\
+cf19d9c328b5"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"d2", "[", "x_", "]"}], " ", ":=", " ", 
+   RowBox[{"x", "/", "2"}]}], ";"}]], "Code",
+ CellChangeTimes->{3.859283911800606*^9},
+ CellLabel->"In[17]:=",ExpressionUUID->"343daa89-795b-44b0-b180-1bcd47416325"],
+
+Cell["\<\
+Defining the General Approach Karatsuba\[CloseCurlyQuote]s algorithm: --- \
+Algorithm 8.1 --- Modern Computer Algebra Book\
+\>", "Text",
+ CellChangeTimes->{
+  3.859283997885603*^9},ExpressionUUID->"c597aff4-1246-412c-a54b-\
+161a2cae520c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Karatsuba", "[", 
+    RowBox[{"P_", ",", "Q_", ",", "n_"}], "]"}], ":=", " ", 
+   RowBox[{"AbstractKaratsuba", "[", 
+    RowBox[{"P", ",", "Q", ",", "n", ",", "d2"}], "]"}]}], ";"}]], "Code",
+ CellChangeTimes->{3.8592839208010693`*^9},
+ CellLabel->"In[18]:=",ExpressionUUID->"cefd749c-0176-45b7-ae0f-5db8f7297689"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["FFT", "Subsection",
+ CellChangeTimes->{{3.859283706618288*^9, 
+  3.859283706956183*^9}},ExpressionUUID->"0e696d3f-5da0-4403-9369-\
+eebe2232d940"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"FFT", "[", 
+   RowBox[{"R_", ",", "w_", ",", "n_"}], "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "RR", ",", "a", ",", "m", ",", "R0", ",", "R1", ",", "L0", ",", "L1"}], 
+     "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"RR", "=", 
+      RowBox[{"PadRight", "[", 
+       RowBox[{"R", ",", "n"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"n", "\[Equal]", "1"}], ",", 
+       RowBox[{"Return", "[", 
+        RowBox[{"{", 
+         RowBox[{"RR", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], "}"}], "]"}]}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"m", "=", 
+      RowBox[{"n", "/", "2"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"a", "=", 
+      RowBox[{"w", "*", "w"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"R0", "=", 
+      RowBox[{"RR", "[", 
+       RowBox[{"[", 
+        RowBox[{"1", ";;", ";;", "2"}], "]"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"R1", "=", 
+      RowBox[{"RR", "[", 
+       RowBox[{"[", 
+        RowBox[{"2", ";;", ";;", "2"}], "]"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"L0", "=", 
+      RowBox[{"FFT", "[", 
+       RowBox[{"R0", ",", "a", ",", "m"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"L1", "=", 
+      RowBox[{"FFT", "[", 
+       RowBox[{"R1", ",", "a", ",", "m"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"L1", "=", 
+      RowBox[{
+       RowBox[{"w", "^", 
+        RowBox[{"Range", "[", 
+         RowBox[{"0", ",", 
+          RowBox[{"m", "-", "1"}]}], "]"}]}], "*", "L1"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Return", "[", 
+      RowBox[{"Catenate", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"L0", "+", "L1"}], ",", 
+         RowBox[{"L0", "-", "L1"}]}], "}"}], "]"}], "]"}]}]}], 
+   "]"}]}]], "Code",
+ CellChangeTimes->{3.859283827360958*^9},
+ CellLabel->"In[19]:=",ExpressionUUID->"9811fad9-217b-4543-9e36-408a94ac54cb"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Homework", "Section",
+ CellChangeTimes->{{3.859283680540887*^9, 
+  3.8592836835109243`*^9}},ExpressionUUID->"fbd8f9ea-3342-4f63-8385-\
+87363ff23aef"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+a) Write a code PFFT[P, Q, n] which returns P Q by using the code FFT of \
+exercise 2. The input should be polynomials P and Q, and the output should be \
+the polynomial P Q.\
+\>", "Subsection",
+ CellChangeTimes->{
+  3.859284027382936*^9},ExpressionUUID->"2f738d3f-a46c-405b-9860-\
+1e5876f4c34a"],
+
+Cell["We implement PFFT following the given instructions:", "Text",
+ CellChangeTimes->{{3.859284450853095*^9, 
+  3.859284465658304*^9}},ExpressionUUID->"236227f2-7047-4f1c-8563-\
+06e17c72c240"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"PFFT", "[", 
+    RowBox[{"P_", ",", "Q_", ",", "n_"}], "]"}], ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"p", "=", 
+        RowBox[{"CoefficientList", "[", 
+         RowBox[{"P", ",", "x"}], "]"}]}], ",", 
+       RowBox[{"q", "=", 
+        RowBox[{"CoefficientList", "[", 
+         RowBox[{"Q", ",", "x"}], "]"}]}], ",", " ", 
+       RowBox[{"w", "=", 
+        RowBox[{"E", "^", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"2", "*", "Pi", "*", "I"}], ")"}], "/", "n"}], 
+          ")"}]}]}]}], "}"}], ",", "\[IndentingNewLine]", "\t", 
+     RowBox[{
+      RowBox[{"Return", "[", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "/", "n"}], ")"}], "*", 
+        RowBox[{"FFT", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"FFT", "[", 
+            RowBox[{"p", ",", "w", ",", "n"}], "]"}], "*", 
+           RowBox[{"FFT", "[", 
+            RowBox[{"q", ",", "w", ",", "n"}], "]"}]}], ",", " ", 
+          RowBox[{"w", "^", 
+           RowBox[{"(", 
+            RowBox[{"-", "1"}], ")"}]}], ",", " ", "n"}], "]"}]}], "]"}], 
+      ";"}]}], "\[IndentingNewLine]", "]"}]}], ";"}]], "Code",
+ CellChangeTimes->{{3.8592841787659893`*^9, 3.859284240682233*^9}, {
+  3.8592843039754963`*^9, 3.859284309442753*^9}, {3.859284382815774*^9, 
+  3.85928438414294*^9}, {3.8592844155333033`*^9, 3.859284442260172*^9}, {
+  3.859285351084248*^9, 3.859285354413323*^9}},
+ CellLabel->"In[58]:=",ExpressionUUID->"942157f4-fdc3-497c-ba32-6c531d9ddcaa"],
+
+Cell["\<\
+Check that it works (We compare it with previous Karatsuba that we know it \
+worked, moreover, we can check it easily):\
+\>", "Text",
+ CellChangeTimes->{{3.8592845677862186`*^9, 3.859284573478759*^9}, {
+  3.859285710137403*^9, 
+  3.859285775771446*^9}},ExpressionUUID->"90ff2577-e8d7-4d8b-b8c5-\
+e1350ea1c775"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"n", " ", "=", " ", "8"}], "\n", 
+ RowBox[{"polys", " ", "=", " ", 
+  RowBox[{"Map", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"AlgebraicNumber", "[", 
+        RowBox[{"x", ",", 
+         RowBox[{"RandomInteger", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", "#"}], "]"}]}], 
+        "]"}], ",", 
+       RowBox[{"AlgebraicNumber", "[", 
+        RowBox[{"x", ",", 
+         RowBox[{"RandomInteger", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", "#"}], "]"}]}], 
+        "]"}]}], "}"}], "&"}], ",", 
+    RowBox[{"{", "3", "}"}]}], "]"}]}], "\n", 
+ RowBox[{"Map", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"AlgebraicNumber", "[", 
+       RowBox[{"x", ",", 
+        RowBox[{"Simplify", "[", 
+         RowBox[{"PFFT", "[", 
+          RowBox[{
+           RowBox[{"#", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], ",", 
+           RowBox[{"#", "[", 
+            RowBox[{"[", "2", "]"}], "]"}], ",", "n"}], "]"}], "]"}]}], "]"}],
+       ",", 
+      RowBox[{"Karatsuba", "[", 
+       RowBox[{
+        RowBox[{"#", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], ",", 
+        RowBox[{"#", "[", 
+         RowBox[{"[", "2", "]"}], "]"}], ",", "n"}], "]"}]}], "}"}], "&"}], 
+   ",", "polys"}], "]"}]}], "Code",
+ CellChangeTimes->{{3.859284681254326*^9, 3.859284695114575*^9}, {
+  3.8592847377801743`*^9, 3.859284753503656*^9}, {3.8592848964728537`*^9, 
+  3.859284912106245*^9}, {3.859284977311734*^9, 3.859285022943674*^9}, {
+  3.8592851769299517`*^9, 3.859285177403421*^9}, {3.859285365077703*^9, 
+  3.859285373942156*^9}, {3.859285480527413*^9, 3.859285668198201*^9}, {
+  3.859285699277429*^9, 3.85928570347875*^9}},
+ CellLabel->"In[91]:=",ExpressionUUID->"fed69446-7908-44f0-9af7-f51fb64d5389"],
+
+Cell[BoxData["8"], "Output",
+ CellChangeTimes->{{3.85928498689123*^9, 3.859284996087726*^9}, 
+   3.859285026173356*^9, {3.859285466031638*^9, 3.859285513139889*^9}, {
+   3.859285669439994*^9, 3.859285704671762*^9}, 3.859285760769548*^9},
+ CellLabel->"Out[91]=",ExpressionUUID->"53c2c430-f733-4e30-9e0d-2850ae63473f"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"2", "-", 
+     SuperscriptBox["x", "2"]}], ",", 
+    RowBox[{
+     RowBox[{"-", "2"}], " ", 
+     SuperscriptBox["x", "2"]}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{{3.85928498689123*^9, 3.859284996087726*^9}, 
+   3.859285026173356*^9, {3.859285466031638*^9, 3.859285513139889*^9}, {
+   3.859285669439994*^9, 3.859285704671762*^9}, 3.859285760771406*^9},
+ CellLabel->"Out[92]=",ExpressionUUID->"6e21421c-139d-490a-bede-c9b0aa4d75c7"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "4"}], " ", 
+      SuperscriptBox["x", "2"]}], "+", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["x", "4"]}]}], ",", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "4"}], " ", 
+      SuperscriptBox["x", "2"]}], "+", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["x", "4"]}]}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{{3.85928498689123*^9, 3.859284996087726*^9}, 
+   3.859285026173356*^9, {3.859285466031638*^9, 3.859285513139889*^9}, {
+   3.859285669439994*^9, 3.859285704671762*^9}, 3.8592857607739553`*^9},
+ CellLabel->"Out[93]=",ExpressionUUID->"417b4a8c-6ece-46fb-95ee-83e0fd774f3d"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+b) Compare the results and the timing of computing these operations with \
+those of Karatsuba. Use again big random polynomials for doing this test.\
+\>", "Subsection",
+ CellChangeTimes->{
+  3.859284048998068*^9},ExpressionUUID->"94002346-58ad-4c3d-8fbc-\
+4b1ca9aa47bc"],
+
+Cell["We implement a time comparator:", "Text",
+ CellChangeTimes->{{3.85928580884658*^9, 
+  3.859285816357506*^9}},ExpressionUUID->"8a5167d9-ea84-40e7-81cd-\
+e1e1f443ef6d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"TimeComparator", "[", 
+    RowBox[{"coeffRange_", ",", " ", "nlist_"}], "]"}], " ", ":=", " ", "\n", 
+   "\t\t", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"p", "=", 
+       RowBox[{"Map", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"AlgebraicNumber", "[", 
+             RowBox[{"x", ",", 
+              RowBox[{"RandomInteger", "[", 
+               RowBox[{"coeffRange", ",", "#"}], "]"}]}], "]"}], ",", 
+            RowBox[{"AlgebraicNumber", "[", 
+             RowBox[{"x", ",", 
+              RowBox[{"RandomInteger", "[", 
+               RowBox[{"coeffRange", ",", "#"}], "]"}]}], "]"}], ",", "#"}], 
+           "}"}], "&"}], ",", "nlist"}], "]"}]}], "}"}], ",", "\n", "\t\t", 
+     RowBox[{"Map", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"AbsoluteTiming", "[", 
+            RowBox[{"PFFT", "[", 
+             RowBox[{
+              RowBox[{"#", "[", 
+               RowBox[{"[", "1", "]"}], "]"}], ",", 
+              RowBox[{"#", "[", 
+               RowBox[{"[", "2", "]"}], "]"}], ",", 
+              RowBox[{"#", "[", 
+               RowBox[{"[", "3", "]"}], "]"}]}], "]"}], "]"}], "[", 
+           RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
+          RowBox[{
+           RowBox[{"AbsoluteTiming", "[", 
+            RowBox[{"Karatsuba", "[", 
+             RowBox[{
+              RowBox[{"#", "[", 
+               RowBox[{"[", "1", "]"}], "]"}], ",", 
+              RowBox[{"#", "[", 
+               RowBox[{"[", "2", "]"}], "]"}], ",", 
+              RowBox[{"#", "[", 
+               RowBox[{"[", "3", "]"}], "]"}]}], "]"}], "]"}], "[", 
+           RowBox[{"[", "1", "]"}], "]"}]}], "}"}], "&"}], ",", "p"}], 
+      "]"}]}], "]"}]}], ";"}]], "Code",
+ CellChangeTimes->{{3.85928427692809*^9, 3.859284289145639*^9}, {
+  3.8592858181391497`*^9, 3.859285880422789*^9}, {3.859285935682028*^9, 
+  3.859285944433127*^9}},
+ CellLabel->"In[95]:=",ExpressionUUID->"c8360347-a906-4a8d-807d-cecf91307734"],
+
+Cell["Now we use the latter function to compare both timings:", "Text",
+ CellChangeTimes->{{3.859285915517665*^9, 
+  3.8592859592806463`*^9}},ExpressionUUID->"f1ef9727-5f0b-4e5b-b835-\
+fc100625445b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TimeComparator", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"16", ",", "32", ",", "64", ",", "128", ",", "256"}], "}"}]}], 
+  "]"}]], "Code",
+ CellChangeTimes->{{3.8592859635105677`*^9, 3.859286034926443*^9}},
+ CellLabel->"In[99]:=",ExpressionUUID->"656046bf-2bfe-41c5-aba6-974c549d3efe"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"0.003426`", ",", "0.005137`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.007656`", ",", "0.015159`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.014476`", ",", "0.041104`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.03338`", ",", "0.123364`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.081833`", ",", "0.36944`"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.859286004507914*^9, 3.859286036281945*^9}},
+ CellLabel->"Out[99]=",ExpressionUUID->"f65e6995-4ce3-4ac2-9321-3ab4951169fd"]
+}, Open  ]],
+
+Cell["\<\
+Each of the above tuples represents the timing for the same poly degrees \
+where the first component is the timing with PFFT and the second is with \
+Karatsuba\[CloseCurlyQuote]s.  We can observe that in each of the executions, \
+PFFT is more efficient than Karatsuba\[CloseCurlyQuote]s.\
+\>", "Text",
+ CellChangeTimes->{{3.859286052993394*^9, 
+  3.859286154623917*^9}},ExpressionUUID->"57ed7900-b113-47eb-8995-\
+903fa29515fd"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 927},
+WindowMargins->{{Automatic, 173}, {0, Automatic}},
+FrontEndVersion->"13.0 for Mac OS X x86 (64-bit) (February 4, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"c03eef14-2f84-4f54-b8bf-31b0376b0454"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[422, 15, 167, 3, 98, "Title",ExpressionUUID->"2eabbfc3-9c66-4f83-a415-6bd2f7cb16f1"],
+Cell[592, 20, 162, 3, 53, "Subtitle",ExpressionUUID->"afa797c3-fe4f-4c1f-be76-b06da96c9f80"],
+Cell[CellGroupData[{
+Cell[779, 27, 152, 3, 67, "Section",ExpressionUUID->"c2105e10-467e-4050-a183-6d74fd92ec0e"],
+Cell[CellGroupData[{
+Cell[956, 34, 157, 3, 54, "Subsection",ExpressionUUID->"cdb5618e-51fb-4ddd-b7ca-f879b9396793"],
+Cell[1116, 39, 544, 10, 58, "Text",ExpressionUUID->"475e4938-883e-42b6-bc77-607d4e3d10cc"],
+Cell[1663, 51, 1689, 47, 91, "Code",ExpressionUUID->"145e6422-ae5c-4dc3-9313-3286bc552d0e"],
+Cell[3355, 100, 332, 7, 58, "Text",ExpressionUUID->"aa91fb3d-bf59-4dcf-9989-8edcdb64d99e"],
+Cell[3690, 109, 330, 8, 52, "Code",ExpressionUUID->"1e12d5cf-bc61-4e7d-9e85-6393fa1512c6"],
+Cell[4023, 119, 626, 17, 37, "Text",ExpressionUUID->"25519a8d-f2be-4827-b1ee-0d2b23e33c80"],
+Cell[4652, 138, 2485, 66, 186, "Code",ExpressionUUID->"b714fab6-f1b2-41f9-b813-623c10e1775e"],
+Cell[7140, 206, 614, 17, 49, "Text",ExpressionUUID->"d2aff7a6-ebe0-4278-938f-cf19d9c328b5"],
+Cell[7757, 225, 253, 6, 52, "Code",ExpressionUUID->"343daa89-795b-44b0-b180-1bcd47416325"],
+Cell[8013, 233, 248, 6, 35, "Text",ExpressionUUID->"c597aff4-1246-412c-a54b-161a2cae520c"],
+Cell[8264, 241, 361, 8, 52, "Code",ExpressionUUID->"cefd749c-0176-45b7-ae0f-5db8f7297689"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8662, 254, 151, 3, 54, "Subsection",ExpressionUUID->"0e696d3f-5da0-4403-9369-eebe2232d940"],
+Cell[8816, 259, 2041, 59, 243, "Code",ExpressionUUID->"9811fad9-217b-4543-9e36-408a94ac54cb"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10906, 324, 155, 3, 67, "Section",ExpressionUUID->"fbd8f9ea-3342-4f63-8385-87363ff23aef"],
+Cell[CellGroupData[{
+Cell[11086, 331, 306, 7, 108, "Subsection",ExpressionUUID->"2f738d3f-a46c-405b-9860-1e5876f4c34a"],
+Cell[11395, 340, 193, 3, 35, "Text",ExpressionUUID->"236227f2-7047-4f1c-8563-06e17c72c240"],
+Cell[11591, 345, 1605, 42, 91, "Code",ExpressionUUID->"942157f4-fdc3-497c-ba32-6c531d9ddcaa"],
+Cell[13199, 389, 320, 7, 58, "Text",ExpressionUUID->"90ff2577-e8d7-4d8b-b8c5-e1350ea1c775"],
+Cell[CellGroupData[{
+Cell[13544, 400, 1948, 53, 91, "Code",ExpressionUUID->"fed69446-7908-44f0-9af7-f51fb64d5389"],
+Cell[15495, 455, 316, 4, 34, "Output",ExpressionUUID->"53c2c430-f733-4e30-9e0d-2850ae63473f"],
+Cell[15814, 461, 510, 12, 37, "Output",ExpressionUUID->"6e21421c-139d-490a-bede-c9b0aa4d75c7"],
+Cell[16327, 475, 697, 19, 37, "Output",ExpressionUUID->"417b4a8c-6ece-46fb-95ee-83e0fd774f3d"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17073, 500, 280, 6, 81, "Subsection",ExpressionUUID->"94002346-58ad-4c3d-8fbc-4b1ca9aa47bc"],
+Cell[17356, 508, 172, 3, 35, "Text",ExpressionUUID->"8a5167d9-ea84-40e7-81cd-e1e1f443ef6d"],
+Cell[17531, 513, 2117, 55, 91, "Code",ExpressionUUID->"c8360347-a906-4a8d-807d-cecf91307734"],
+Cell[19651, 570, 199, 3, 35, "Text",ExpressionUUID->"f1ef9727-5f0b-4e5b-b835-fc100625445b"],
+Cell[CellGroupData[{
+Cell[19875, 577, 395, 10, 52, "Code",ExpressionUUID->"656046bf-2bfe-41c5-aba6-974c549d3efe"],
+Cell[20273, 589, 571, 14, 56, "Output",ExpressionUUID->"f65e6995-4ce3-4ac2-9321-3ab4951169fd"]
+}, Open  ]],
+Cell[20859, 606, 437, 8, 81, "Text",ExpressionUUID->"57ed7900-b113-47eb-8995-903fa29515fd"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
